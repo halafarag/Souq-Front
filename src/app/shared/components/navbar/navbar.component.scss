@@ -7,3 +7,14 @@ strong {
   font-size: 14px;
   line-height: 1.42857143;
 }
+nav {
+  top: 0;
+  width: 100%;
+  color: white;
+  background-color: #2980b9;
+  padding: 0 2rem;
+}
+
+nav.nav--hidden {
+  transform: translateY(-100%);
+}
