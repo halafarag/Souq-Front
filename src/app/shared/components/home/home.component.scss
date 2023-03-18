@@ -1,0 +1,31 @@
+$variable: "Roboto", "Noto Kufi Arabic";
+.mini {
+  color: #663a2a;
+  font-weight: 700;
+  font-family: $variable;
+}
+.san {
+  color: #fcb4a9;
+  font-weight: 700;
+  font-family: $variable;
+}
+.card-text {
+  color: #303133;
+  font-size: 15px;
+  font-family: $variable;
+}
+.btn {
+  background-color: #663a2a;
+  color: white;
+}
+.img-hover-zoom {
+  overflow: hidden;
+}
+
+.img-hover-zoom img {
+  transition: transform 0.5s ease;
+}
+
+.img-hover-zoom:hover img {
+  transform: scale(1.5);
+}

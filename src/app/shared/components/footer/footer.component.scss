@@ -1,0 +1,82 @@
+strong {
+  font-size: 19px !important;
+  color: #6f3c2e;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  margin-bottom: 1rem;
+  font-family: "Roboto", "Noto Kufi Arabic";
+  line-height: 1.1;
+}
+.list-unstyled li {
+  color: #6f3c2e;
+  margin-bottom: 7px;
+  font-size: 14px;
+  font-family: "Roboto", "Noto Kufi Arabic";
+  margin-left: 0px !important;
+}
+.pay {
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  font-size: 15px !important;
+  margin-top: 10px !important;
+}
+.site-footer {
+  background-color: #faf5f2;
+  color: #6f3c2e;
+}
+@media (max-width: 991px) {
+  .site-footer [class^="col-"] {
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 767px) {
+  .site-footer {
+    padding-bottom: 0;
+  }
+  .site-footer .copyright-text,
+  .site-footer {
+    text-align: center;
+  }
+}
+.social-icons li {
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.social-icons a {
+  background-color: transparent;
+  color: #6f3c2e;
+  font-size: 22px;
+  display: inline-block;
+  line-height: 44px;
+  width: 44px;
+  height: 44px;
+  text-align: center;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+.social-icons a:active,
+.social-icons a:focus,
+.social-icons a:hover {
+  color: #fff;
+  background-color: #fcb4a9;
+  border: solid 1px #6f3c2e;
+}
+.social-icons.size-sm a {
+  height: 34px;
+  width: 34px;
+  font-size: 14px;
+}
+.social-icons a.hover:hover {
+  background-color: #fcb4a9;
+}
+
+@media (max-width: 767px) {
+  .social-icons li.title {
+    display: block;
+    margin-right: 0;
+    font-weight: 600;
+  }
+}
