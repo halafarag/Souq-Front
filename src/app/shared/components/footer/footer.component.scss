@@ -8,11 +8,15 @@ strong {
   line-height: 1.1;
 }
 .list-unstyled li {
+  cursor: pointer;
   color: #6f3c2e;
   margin-bottom: 7px;
   font-size: 14px;
-  font-family: "Roboto", "Noto Kufi Arabic";
   margin-left: 0px !important;
+  list-style: none;
+}
+.list-unstyled li:hover {
+  color: #fcb4a9;
 }
 .pay {
   font-weight: 700;

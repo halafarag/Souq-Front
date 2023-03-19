@@ -29,3 +29,27 @@ $variable: "Roboto", "Noto Kufi Arabic";
 .img-hover-zoom:hover img {
   transform: scale(1.5);
 }
+// ///////////////////////Categories
+.parent {
+  position: relative;
+}
+.button {
+  position: absolute;
+  top: 89%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #fcb4a9;
+  color: #663a2a;
+  padding: 8px 40px;
+}
+.button:hover {
+  background-color: #663a2a;
+  color: white;
+}
+.category {
+  font-family: "Roboto", "Noto Kufi Arabic";
+  font-weight: 700;
+
+  color: #663a2a;
+}
