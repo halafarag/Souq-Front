@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+::-webkit-scrollbar-thumb {
+  background-color: #d8d6d6;
+  border: none;
+  border-radius: 90px !important;
+  height: 250px !important;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+// body {
+//   font-family: "Roboto", "Noto Kufi Arabic" !important;
+//   background-color: rgb(255, 255, 255);
+// }

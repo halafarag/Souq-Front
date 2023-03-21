@@ -6,8 +6,7 @@ import { NgxHideOnScrollModule } from 'ngx-hide-on-scroll';
 import { SliderComponent } from './components/slider/slider.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
-import { IvyCarouselModule } from 'angular-responsive-carousel';
-import { CarouselModule } from 'ngx-owl-carousel-o';
+import { CarsoulComponent } from './components/carsoul/carsoul.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +15,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     SliderComponent,
     FooterComponent,
     HomeComponent,
+    CarsoulComponent,
   ],
-  imports: [CommonModule, NgxHideOnScrollModule, CarouselModule],
+  imports: [CommonModule, NgxHideOnScrollModule],
   exports: [
     HeaderComponent,
     NavbarComponent,

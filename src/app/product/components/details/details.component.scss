@@ -1,0 +1,57 @@
+$variable: #6f3c2e;
+h1,
+p,
+a,
+button {
+  font-family: "Roboto", "Noto Kufi Arabic" !important;
+}
+
+.card-title {
+  font-size: 25px;
+  color: $variable;
+  font-weight: bold;
+  line-height: 1.1;
+}
+.discrip {
+  font-size: 15px;
+  margin: 25px 0px;
+  clear: both;
+  color: $variable !important;
+  line-height: 22px;
+}
+.review {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 14px;
+}
+.price {
+  font-size: 25px;
+  color: $variable;
+  font-weight: bold;
+}
+.btn {
+  background-color: $variable;
+  color: white;
+}
+.favs {
+  color: #999999;
+  font-size: 14px;
+  font-weight: 400;
+}
+i {
+  color: $variable;
+  font-size: 22px;
+  border: solid 3px $variable;
+  border-radius: 80%;
+  padding: 7px 10px;
+  font-weight: 900;
+}
+@media (max-width: 767px) {
+  .card-title,
+  .review,
+  .discrip,
+  .price,
+  .add {
+    text-align: center;
+  }
+}
