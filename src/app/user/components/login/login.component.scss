@@ -1,0 +1,29 @@
+h1,
+h2,
+h3,
+span,
+label {
+  font-family: "Roboto", "Noto Kufi Arabic";
+}
+$variable: #663a2a;
+.register {
+  color: $variable;
+  font-size: 20px;
+}
+h3 {
+  font-size: 15px;
+  color: $variable;
+}
+input {
+  border: none;
+  background-color: #f3f3f3;
+}
+.lable {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.btn {
+  background-color: $variable;
+  color: white;
+}
