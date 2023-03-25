@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxHideOnScrollModule } from 'ngx-hide-on-scroll';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ProductModule } from './product/product.module';
 import { SharedModule } from './shared/shared.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,6 +16,8 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     SharedModule,
     NgxHideOnScrollModule,
+    UserModule,
+    ProductModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,7 +1,10 @@
 <app-navbar></app-navbar>
 
 <!-- Header -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white header-outer">
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-white header-outer"
+  *ngIf="router.url !== '/login' && router.url !== '/register'"
+>
   <div class="container header-container">
     <button
       class="navbar-toggler rounded-circle p-1"
@@ -24,90 +27,19 @@
     /></a>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#"
-            >Yameesh & Nuts</a
-          >
-        </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngFor="let cat of catList">
           <div class="dropdown">
-            <a type="button" class="dropbtn nav-link active">Oriental</a>
-            <div class="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-            </div>
-          </div>
-        </li>
-        <li class="nav-item">
-          <div class="dropdown">
-            <a type="button" class="dropbtn nav-link active">Bakery</a>
-            <div class="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-            </div>
-          </div>
-        </li>
-        <li class="nav-item">
-          <div class="dropdown">
-            <a type="button" class="dropbtn nav-link active">Western</a>
-            <div class="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-            </div>
-          </div>
-        </li>
-        <li class="nav-item">
-          <div class="dropdown">
-            <a type="button" class="dropbtn nav-link active">El Abd Snacks</a>
-            <div class="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-            </div>
-          </div>
-        </li>
-        <li class="nav-item">
-          <div class="dropdown">
-            <a type="button" class="dropbtn nav-link active">Chocolate</a>
-            <div class="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-            </div>
-          </div>
-        </li>
-        <li class="nav-item">
-          <div class="dropdown">
-            <a type="button" class="dropbtn nav-link active">Kahk & Biscuits</a>
-            <div class="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-            </div>
-          </div>
-        </li>
-        <li class="nav-item">
-          <div class="dropdown">
-            <a type="button" class="dropbtn nav-link active"
-              >Halawet El Mouled</a
+            <a
+              type="button"
+              class="dropbtn nav-link active"
+              (mouseover)="getSubCatforCategory(cat._id)"
+              (mouseenter)="empty()"
+              routerLink="/cat/{{ cat._id }}"
+              >{{ cat.name }}</a
             >
-            <div class="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-            </div>
-          </div>
-        </li>
-        <li class="nav-item">
-          <div class="dropdown">
-            <a type="button" class="dropbtn nav-link active">Beverages</a>
-            <div class="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
+            <div class="dropdown-content pt-0 mt-0">
+              <a *ngFor="let sub of subList" href="#">{{ sub.name }}</a>
+              <a *ngIf="subList.length == 0; error">{{ error }}</a>
             </div>
           </div>
         </li>
@@ -115,7 +47,37 @@
       <div>
         <div class="d-flex">
           <a class="p-2" type="button"><i class="bi bi-search"></i></a>
-          <a class="p-2" type="button"><i class="bi bi-person-fill"></i></a>
+          <div class="dropdown">
+            <a
+              class="p-2"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              type="button"
+              ><i class="bi bi-person-fill"></i
+            ></a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li class="d-flex justify-content-center">
+                <a
+                  routerLink="/login"
+                  class="btn p-2 w-75 m-auto log"
+                  type="button"
+                  >Log In</a
+                >
+              </li>
+              <li class="d-flex justify-content-center">
+                <a class="nav-link text-dark text-center" type="button">or</a>
+              </li>
+              <li class="d-flex justify-content-center">
+                <a
+                  routerLink="/register"
+                  class="btn p-2 w-75 m-auto log"
+                  type="button"
+                  >Register</a
+                >
+              </li>
+            </ul>
+          </div>
           <a class="p-2" type="button"
             ><i class="bi bi-basket position-relative pe-2"></i>
             <span

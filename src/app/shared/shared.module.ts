@@ -7,6 +7,8 @@ import { SliderComponent } from './components/slider/slider.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { CarsoulComponent } from './components/carsoul/carsoul.component';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,12 @@ import { CarsoulComponent } from './components/carsoul/carsoul.component';
     HomeComponent,
     CarsoulComponent,
   ],
-  imports: [CommonModule, NgxHideOnScrollModule],
+  imports: [
+    CommonModule,
+    NgxHideOnScrollModule,
+    RouterModule,
+    HttpClientModule,
+  ],
   exports: [
     HeaderComponent,
     NavbarComponent,
