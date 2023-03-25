@@ -4,7 +4,7 @@
       <div class="row g-0">
         <div class="col-xs-12 col-sm-5 col-md-5">
           <img
-            src="https://elabdfoods.com/images/thumbs/0000669_-_550.png"
+            src="{{ prd.img }}"
             class="img-fluid rounded-start border-end border-2"
           />
         </div>
@@ -12,15 +12,19 @@
           <div class="card-body ps-4">
             <h1 class="card-title">Oriental Nuts Mix</h1>
             <p class="discrip">
-              An assortment of Middle Eastern sweets, El Abd Oriental Sweets
-              Plate is the perfect gift for gatherings and occasions..
+              {{ prd.discription }}
             </p>
             <h5 class="">
               <p class="review">1 Review(S) | Add Your Review</p>
-              <p class="review">Availability:In stock</p>
-              <p class="price">310.00 ج.م.‏</p>
-              <p class="review">Package Quantity: 40 Pieces</p>
-              <p class="review">Qty:</p>
+              <p class="review" *ngIf="prd.quantity >= 1">
+                Availability:In stock
+              </p>
+              <p class="review" *ngIf="prd.quantity == 0">
+                Availability:Out Of stock
+              </p>
+              <p class="price">{{ prd.price }} ج.م.‏</p>
+              <p class="review">Package Quantity: {{ prd.volume }}</p>
+              <p class="review">Qty:{{ prd.quantity }}</p>
             </h5>
             <div class="add">
               <a type="button" class="btn my-3 col-6">Add To Cart</a>
@@ -34,14 +38,5 @@
         </div>
       </div>
     </div>
-    <!-- <div class="col-xs-12 col-sm-5 col-md-5">
-        <img
-          src="https://elabdfoods.com/images/thumbs/0000669_-_550.png"
-          width="455.900"
-          height="455.900"
-          class="border-end border-2"
-        />
-      </div>
-      <div class="col-xs-12 col-sm-7 col-md-7">mohamed</div> -->
   </div>
 </div>
