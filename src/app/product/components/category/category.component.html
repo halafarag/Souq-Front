@@ -3,7 +3,7 @@
     <div class="form-group col-md-4 col-xs-12">
       <select
         (change)="sort($event)"
-        class="form-select mb-3 ms-3 border border-0"
+        class="form-select mb-4 ms-3 border border-0"
         aria-label="Default select example"
       >
         <option value="" selected disabled hidden>Sort By</option>
@@ -37,11 +37,9 @@
         </div>
         <span class="mb-5 brtop"></span>
         <ul class="list-group">
-          <li class="list-group-item li">An item</li>
-          <li class="list-group-item li">A second item</li>
-          <li class="list-group-item li">A third item</li>
-          <li class="list-group-item li">A fourth item</li>
-          <li class="list-group-item li">And a fifth one</li>
+          <li class="list-group-item li" *ngFor="let cat of catList">
+            <i class="bi bi-arrow-right-circle-fill pe-2"></i> {{ cat.name }}
+          </li>
         </ul>
       </div>
     </div>
@@ -49,11 +47,8 @@
       class="col-xs-12 col-sm-4 col-md-3 p-0 row d-flex justify-content-center align-items-center mb-3"
       *ngFor="let prd of prdList"
     >
-      <div
-        class="card col-xs-12 col-sm-4 col-md-3"
-        (click)="prdDetails(prd._id)"
-      >
-        <div class="img">
+      <div class="card col-xs-12 col-sm-4 col-md-3">
+        <div class="img" (click)="prdDetails(prd._id)">
           <img
             src="{{ prd.img[0] }}"
             class="card-img-top"
@@ -81,8 +76,10 @@
                 </a>
               </li>
               <li>
-                <a class="hover mx-2 shadow-sm border-0"
-                  ><i class="bi bi-basket position-relative"></i
+                <a
+                  class="hover mx-2 shadow-sm border-0"
+                  (click)="addToLocalStorge(prd)"
+                  ><i class="bi bi-basket"></i
                 ></a>
               </li>
             </ul>

@@ -19,6 +19,7 @@ span {
 }
 select {
   background-color: #f3f3f3;
+  box-shadow: none !important;
 }
 .border-top {
   width: 865.5px;
@@ -32,6 +33,7 @@ select {
   width: 262.5px;
   height: 262.5px;
   padding: 52px;
+  cursor: pointer;
 }
 
 .card-body {
@@ -42,6 +44,8 @@ select {
   color: #6f3c2e;
   font-weight: 550;
   font-size: 14px;
+  height: 17px;
+  overflow: hidden;
 }
 .price {
   font-size: 16px;
@@ -84,6 +88,11 @@ hr {
   border: none !important;
   border-bottom: solid 0.5px rgb(236, 234, 234) !important;
   margin: 0px 10px !important;
+  color: #6f3c2e;
+}
+.li:hover {
+  color: #f6b0ab;
+  cursor: pointer;
 }
 .brtop {
   border: none !important;

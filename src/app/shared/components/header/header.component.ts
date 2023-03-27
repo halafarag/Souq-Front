@@ -13,7 +13,14 @@ export class HeaderComponent implements OnInit {
   catList: Category[] = [];
   subList: Subcategory[] = [];
   error: string = '';
+  cartList: any[] = [];
   constructor(public router: Router, private catService: CategoryService) {}
+  getCartFromLocalStorge() {
+    if ('cart' in localStorage) {
+      this.cartList = JSON.parse(localStorage.getItem('cart')!);
+      console.log(this.cartList.length);
+    }
+  }
   getAllCategories() {
     this.catService.getAllCategory().subscribe((data) => {
       this.catList = data;
@@ -30,12 +37,14 @@ export class HeaderComponent implements OnInit {
         this.error = JSON.stringify(error.error.error);
       }
     );
-    console.log(id);
+    // console.log(id);
   }
   empty() {
     this.subList = [];
   }
+
   ngOnInit(): void {
     this.getAllCategories();
+    this.getCartFromLocalStorge();
   }
 }

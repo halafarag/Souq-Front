@@ -35,15 +35,9 @@
       <div class="col-xs-6 col-lg-2 col-md-6">
         <h6><strong>Our Categories</strong></h6>
         <ul class="list-unstyled mt-4">
-          <li><i class="bi bi-arrow-right-short"></i> Yameesh & Nuts</li>
-          <li><i class="bi bi-arrow-right-short"></i> Yameesh & Nuts</li>
-          <li><i class="bi bi-arrow-right-short"></i> Yameesh & Nuts</li>
-          <li><i class="bi bi-arrow-right-short"></i> Yameesh & Nuts</li>
-          <li><i class="bi bi-arrow-right-short"></i> Yameesh & Nuts</li>
-          <li><i class="bi bi-arrow-right-short"></i> Yameesh & Nuts</li>
-          <li><i class="bi bi-arrow-right-short"></i> Yameesh & Nuts</li>
-          <li><i class="bi bi-arrow-right-short"></i> Yameesh & Nuts</li>
-          <li><i class="bi bi-arrow-right-short"></i> Yameesh & Nuts</li>
+          <li *ngFor="let cat of catList">
+            <i class="bi bi-arrow-right-short"></i> {{ cat.name }}
+          </li>
         </ul>
       </div>
 

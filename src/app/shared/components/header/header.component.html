@@ -18,7 +18,7 @@
       <span class="bi bi-list"></span>
     </button>
 
-    <a class="navbar-brand me-0"
+    <a class="navbar-brand me-0" routerLink="/"
       ><img
         src="https://elabdfoods.com/images/thumbs/0000525_storeEnglishLogo.png"
         width="90"
@@ -38,7 +38,12 @@
               >{{ cat.name }}</a
             >
             <div class="dropdown-content pt-0 mt-0">
-              <a *ngFor="let sub of subList" href="#">{{ sub.name }}</a>
+              <a
+                *ngFor="let sub of subList"
+                routerLink="/subcat/{{ sub._id }}"
+                (change)="empty()"
+                >{{ sub.name }}</a
+              >
               <a *ngIf="subList.length == 0; error">{{ error }}</a>
             </div>
           </div>
@@ -78,13 +83,12 @@
               </li>
             </ul>
           </div>
-          <a class="p-2" type="button"
+          <a class="p-2" type="button" routerLink="/cart"
             ><i class="bi bi-basket position-relative pe-2"></i>
             <span
               class="position-absolute top-70 start-90 translate-middle badge rounded-pill"
             >
-              2
-              <span class="visually-hidden">unread messages</span>
+              {{ cartList.length }}
             </span></a
           >
           <a class="p-2 pe-0" type="button"

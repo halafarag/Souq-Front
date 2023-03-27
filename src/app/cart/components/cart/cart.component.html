@@ -1,0 +1,102 @@
+<div class="container table-responsive mb-5">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-md-7 col-xs-12">
+      <h1 class="">Shopping cart</h1>
+      <table class="table">
+        <thead>
+          <tr class="text-center" style="font-size: 14px; color: #6f3c2e">
+            <th scope="col">Image</th>
+            <th scope="col">Product(S)</th>
+            <th scope="col">Price</th>
+            <th scope="col">Qty.</th>
+            <th scope="col">Total</th>
+            <th scope="col">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="text-center"
+            *ngFor="let cart of cartList; let index = index"
+          >
+            <th>
+              <img src="{{ cart.prd.img[0] }}" width="80" height="80" />
+            </th>
+            <td style="color: #f6b0ab" class="fw-bold">
+              {{ cart.prd.name }}
+            </td>
+            <td class="color">{{ cart.prd.price }} ج.م.‏</td>
+            <td>
+              <div
+                class="d-flex justify-content-center align-items-center col-6 ms-5"
+              >
+                <button
+                  class="btn CheckOut m-1 px-1"
+                  (click)="plusAmount(index)"
+                >
+                  +
+                </button>
+                <input
+                  class="form-control my-1"
+                  type="number"
+                  (change)="detectChange()"
+                  min="1"
+                  value="{{ cart.amount }}"
+                />
+                <button
+                  class="btn CheckOut m-1 px-1"
+                  (click)="minusAmount(index)"
+                >
+                  -
+                </button>
+              </div>
+            </td>
+            <td class="color">{{ cart.prd.price * cart.amount }}ج.م.‏</td>
+            <td>
+              <a type="button" (click)="deletePrd(index)"
+                ><i class="bi bi-trash3"></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-end">
+        <a
+          type="button"
+          class="btn add col-md-3 col-xs-auto"
+          (click)="addToCart()"
+          >Add To Cart</a
+        >
+      </div>
+    </div>
+    <div class="col-md-5 col-xs-12 mt-5">
+      <div class="card">
+        <div class="card-body d-flex justify-content-between text-muted">
+          <span>Sub-Total:</span>
+          <span>{{ total }}ج.م.‏</span>
+        </div>
+        <div class="card-body d-flex justify-content-between pt-1 text-muted">
+          <span>Shipping:</span> <span>20 ج.م.‏</span>
+        </div>
+        <div class="border border-top"></div>
+        <div class="card-body d-flex justify-content-between">
+          <span style="color: #000; font-weight: 700">Total:</span>
+          <span style="color: #fcb4a9; font-weight: 700"
+            >{{ total + 20 }}ج.م.‏</span
+          >
+        </div>
+      </div>
+
+      <div class="card mt-2">
+        <div class="card-body dilver">
+          <i class="bi bi-ev-front-fill fs-4"></i> Delivered Within 60 - 90
+          Minutes
+        </div>
+      </div>
+      <div>
+        <a type="button" class="btn CheckOut my-3 fs-6 col-12"
+          ><i class="bi bi-basket pe-2"></i>CheckOut</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

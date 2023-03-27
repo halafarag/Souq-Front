@@ -5,6 +5,7 @@ import { NgxHideOnScrollModule } from 'ngx-hide-on-scroll';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CartModule } from './cart/cart.module';
 import { ProductModule } from './product/product.module';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
@@ -18,6 +19,7 @@ import { UserModule } from './user/user.module';
     NgxHideOnScrollModule,
     UserModule,
     ProductModule,
+    CartModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

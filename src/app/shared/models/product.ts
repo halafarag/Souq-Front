@@ -5,7 +5,10 @@ export interface Product {
   price: number;
   volume: string;
   img: string[];
-  category: object;
+  category: {
+    _id: string;
+    name: string;
+  };
   subcategory: object;
   quantity: number;
   discount: number;

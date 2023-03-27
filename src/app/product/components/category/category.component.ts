@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Category } from 'src/app/shared/models/category';
 import { Product } from 'src/app/shared/models/product';
 import { CategoryService } from 'src/app/shared/services/category.service';
+import { Cart } from '../../models/cart';
 
 @Component({
   selector: 'app-category',
@@ -10,6 +12,9 @@ import { CategoryService } from 'src/app/shared/services/category.service';
 })
 export class CategoryComponent implements OnInit {
   prdList: Product[] = [];
+  catList: Category[] = [];
+  cartList: any[] = [];
+  amount: number = 1;
   constructor(
     private catService: CategoryService,
     private activeRoute: ActivatedRoute,
@@ -20,12 +25,8 @@ export class CategoryComponent implements OnInit {
 
     this.catService.getAllProdForCategory(catID || '').subscribe((data) => {
       this.prdList = data;
-      // this.ngOnInit();
-      console.log(data);
     });
-    console.log(catID);
   }
-  // product details
   prdDetails(prdId: string) {
     this.router.navigate([`details/${prdId}`]);
   }
@@ -68,8 +69,38 @@ export class CategoryComponent implements OnInit {
     }
     return this.prdList;
   }
+  //
+  getAllCategory() {
+    this.catService.getAllCategory().subscribe((data) => {
+      this.catList = data;
+    });
+  }
 
+  addToLocalStorge(prd: any, amount = 1) {
+    const userId = localStorage.getItem('id')!;
+    if (userId) {
+      if ('cart' in localStorage) {
+        this.cartList = JSON.parse(localStorage.getItem('cart')!);
+        const existProduct = this.cartList.find(
+          (item) => item.prd._id == prd._id
+        );
+        if (existProduct) {
+          alert('this product is already in your cart');
+        } else {
+          this.cartList.push({ prd, userId, amount });
+          localStorage.setItem('cart', JSON.stringify(this.cartList));
+        }
+      } else {
+        this.cartList.push({ prd, userId, amount });
+        localStorage.setItem('cart', JSON.stringify(this.cartList));
+      }
+    } else {
+      alert('you must be login first');
+    }
+    localStorage.setItem('cart', JSON.stringify(this.cartList));
+  }
   ngOnInit(): void {
     this.getAllPrdForCat();
+    this.getAllCategory();
   }
 }

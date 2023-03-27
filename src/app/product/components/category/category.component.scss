@@ -19,6 +19,7 @@ span {
 }
 select {
   background-color: #f3f3f3;
+  box-shadow: none !important;
 }
 .border-top {
   width: 865.5px;
@@ -86,6 +87,11 @@ hr {
   border: none !important;
   border-bottom: solid 0.5px rgb(236, 234, 234) !important;
   margin: 0px 10px !important;
+  color: #6f3c2e;
+}
+.li:hover {
+  color: #f6b0ab;
+  cursor: pointer;
 }
 .brtop {
   border: none !important;

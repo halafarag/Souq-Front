@@ -1,14 +1,15 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row d-flex justify-content-around col-9">
     <div class="form-group col-md-4 col-xs-12">
       <select
-        class="form-select mb-5 ms-3 border border-0"
+        (change)="sort($event)"
+        class="form-select mb-4 ms-3 border border-0"
         aria-label="Default select example"
       >
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option value="" selected disabled hidden>Sort By</option>
+        <option value="Name">Name A To Z</option>
+        <option value="Low">Price: Low to High</option>
+        <option value="High">Price: High to Low</option>
       </select>
     </div>
   </div>
@@ -36,21 +37,20 @@
         </div>
         <span class="mb-5 brtop"></span>
         <ul class="list-group">
-          <li class="list-group-item li">An item</li>
-          <li class="list-group-item li">A second item</li>
-          <li class="list-group-item li">A third item</li>
-          <li class="list-group-item li">A fourth item</li>
-          <li class="list-group-item li">And a fifth one</li>
+          <li class="list-group-item li" *ngFor="let cat of catList">
+            <i class="bi bi-arrow-right-circle-fill pe-2"></i> {{ cat.name }}
+          </li>
         </ul>
       </div>
     </div>
     <div
       class="col-xs-12 col-sm-4 col-md-3 p-0 row d-flex justify-content-center align-items-center mb-3"
+      *ngFor="let prd of prdList"
     >
       <div class="card col-xs-12 col-sm-4 col-md-3">
-        <div class="img">
+        <div class="img" (click)="prdDetails(prd._id)">
           <img
-            src="https://elabdfoods.com/images/thumbs/0000463_-_415.png"
+            src="{{ prd.img[0] }}"
             class="card-img-top"
             width="157.500"
             height="157.500"
@@ -59,12 +59,14 @@
 
         <div class="card-body">
           <h1 type="button" class="card-title text-center">
-            chocolate-croissant
+            {{ prd.name }}
           </h1>
           <div class="text-center mb-4">
-            <span class="price pt-2">20.00 ج.م.‏</span>
+            <span class="price pt-2"> {{ prd.price }} ج.م.‏</span>
           </div>
+
           <hr />
+          <!--  -->
 
           <div class="text-center">
             <ul class="social-icons" style="padding-left: 0px">
@@ -74,86 +76,10 @@
                 </a>
               </li>
               <li>
-                <a class="hover mx-2 shadow-sm border-0"
-                  ><i class="bi bi-basket position-relative"></i
-                ></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="col-xs-12 col-sm-4 col-md-3 p-0 row d-flex justify-content-center align-items-center mb-3"
-    >
-      <div class="card col-xs-12 col-sm-4 col-md-3">
-        <div class="img">
-          <img
-            src="https://elabdfoods.com/images/thumbs/0000463_-_415.png"
-            class="card-img-top"
-            width="157.500"
-            height="157.500"
-          />
-        </div>
-
-        <div class="card-body">
-          <h1 type="button" class="card-title text-center">
-            chocolate-croissant
-          </h1>
-          <div class="text-center mb-4">
-            <span class="price pt-2">20.00 ج.م.‏</span>
-          </div>
-          <hr />
-
-          <div class="text-center">
-            <ul class="social-icons" style="padding-left: 0px">
-              <li>
-                <a class="hover mx-2 shadow-sm"
-                  ><i class="bi bi-suit-heart"></i>
-                </a>
-              </li>
-              <li>
-                <a class="hover mx-2 shadow-sm"
-                  ><i class="bi bi-basket position-relative"></i
-                ></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="col-xs-12 col-sm-4 col-md-3 p-0 row d-flex justify-content-center align-items-center mb-3"
-    >
-      <div class="card col-xs-12 col-sm-4 col-md-3">
-        <div class="img">
-          <img
-            src="https://elabdfoods.com/images/thumbs/0000463_-_415.png"
-            class="card-img-top"
-            width="157.500"
-            height="157.500"
-          />
-        </div>
-
-        <div class="card-body">
-          <h1 type="button" class="card-title text-center">
-            chocolate-croissant
-          </h1>
-          <div class="text-center mb-4">
-            <span class="price pt-2">20.00 ج.م.‏</span>
-          </div>
-          <hr />
-
-          <div class="text-center">
-            <ul class="social-icons" style="padding-left: 0px">
-              <li>
-                <a class="hover mx-2 shadow-sm"
-                  ><i class="bi bi-suit-heart"></i>
-                </a>
-              </li>
-              <li>
-                <a class="hover mx-2 shadow-sm"
-                  ><i class="bi bi-basket position-relative"></i
+                <a
+                  class="hover mx-2 shadow-sm border-0"
+                  (click)="addToLocalStorge(prd)"
+                  ><i class="bi bi-basket"></i
                 ></a>
               </li>
             </ul>
