@@ -1,0 +1,74 @@
+<div class="container-fluid mt-5 py-5">
+  <div class="row d-flex justify-content-between mx-auto col-10">
+    <div class="text-center">
+      <p style="color: rgb(196, 216, 45); font-size: 16px; letter-spacing: 3px">
+        DON'T MISS OUR
+      </p>
+      <h1
+        class="mb-5 fw-bold fs-2"
+        style="
+          color: rgb(0, 177, 143);
+
+          letter-spacing: 3px;
+        "
+      >
+        Latest Offers
+      </h1>
+    </div>
+
+    <div
+      class="col-xs-12 col-sm-12 col-md-3 p-2 mx-auto"
+      *ngFor="
+        let prd of prdList | paginate : { itemsPerPage: 4, currentPage: p }
+      "
+    >
+      <div class="card p-3 mb-5 bg-body" *ngIf="prd.discount">
+        <img
+          [src]="prd.img"
+          class="card-img-top pb-0 mb-0 border m-auto img-fluid rounded-0"
+        />
+
+        <div class="card-img-overlay">
+          <h5 class="card-title badge p-2" style="background-color: #f1563f">
+            UP TO 50%
+          </h5>
+        </div>
+        <div class="card-body">
+          <h1 type="button" class="card-title text-center">{{ prd.name }}</h1>
+          <div class="text-center">
+            <div class="card-body text-center p-0 m-0">
+              <p class="text-danger pb-0 mb-0">
+                {{ prd.discount | currency : "EGP" }}
+              </p>
+              <p
+                class="text-muted fs-6 pt-0 mt-0"
+                style="text-decoration: line-through"
+              >
+                {{ prd.price | currency : "EGP" }}
+              </p>
+            </div>
+          </div>
+          <hr />
+
+          <div class="text-center">
+            <ul class="social-icons" style="padding-left: 0px">
+              <li>
+                <a class="hover mx-2 shadow-sm"
+                  ><i class="bi bi-suit-heart position-relative"></i>
+                </a>
+              </li>
+              <li>
+                <a class="hover mx-2 shadow-sm"
+                  ><i class="bi bi-basket position-relative"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-center">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

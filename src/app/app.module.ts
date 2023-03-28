@@ -9,6 +9,7 @@ import { CartModule } from './cart/cart.module';
 import { ProductModule } from './product/product.module';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { UserModule } from './user/user.module';
     UserModule,
     ProductModule,
     CartModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

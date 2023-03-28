@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div class="row text-center fs-2">
+    <strong class="category">All Products</strong>
+  </div>
+
+  <div class="active my-5">
+    <div class="card-wrapper d-flex justify-content-center">
+      <div class="allcards row ms-2">
+        <div
+          class="card m-2 col-xs-12 col-sm-12 col-md-3"
+          *ngFor="
+            let prd of prdList | paginate : { itemsPerPage: 4, currentPage: p }
+          "
+        >
+          <div class="img">
+            <img
+              src="{{ prd.img[0] }}"
+              class="card-img-top"
+              width="157.500"
+              height="157.500"
+            />
+          </div>
+
+          <div class="card-body">
+            <h1 type="button" class="card-title text-center">{{ prd.name }}</h1>
+            <div class="text-center mb-4">
+              <span class="price pt-2"> {{ prd.price }} ج.م.‏</span>
+            </div>
+            <hr />
+
+            <div class="text-center">
+              <ul class="social-icons" style="padding-left: 0px">
+                <li>
+                  <a class="hover mx-2 shadow-sm"
+                    ><i class="bi bi-suit-heart"></i>
+                  </a>
+                </li>
+                <li>
+                  <a class="hover mx-2 shadow-sm"
+                    ><i class="bi bi-basket position-relative"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-center">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

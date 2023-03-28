@@ -6,9 +6,9 @@ import { NgxHideOnScrollModule } from 'ngx-hide-on-scroll';
 import { SliderComponent } from './components/slider/slider.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
-import { CarsoulComponent } from './components/carsoul/carsoul.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductModule } from '../product/product.module';
 
 @NgModule({
   declarations: [
@@ -17,13 +17,13 @@ import { HttpClientModule } from '@angular/common/http';
     SliderComponent,
     FooterComponent,
     HomeComponent,
-    CarsoulComponent,
   ],
   imports: [
     CommonModule,
     NgxHideOnScrollModule,
     RouterModule,
     HttpClientModule,
+    ProductModule,
   ],
   exports: [
     HeaderComponent,

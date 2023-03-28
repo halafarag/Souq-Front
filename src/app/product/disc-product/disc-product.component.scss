@@ -1,0 +1,69 @@
+.card {
+  padding: 0;
+  width: 262.5px;
+  height: 420px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  transition: scale 300ms;
+}
+.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  transform: scale(1.02);
+}
+
+img {
+  width: 262.5px;
+  height: 262.5px;
+  padding: 52px;
+}
+
+.card-title {
+  color: #6f3c2e;
+  font-family: "Roboto", "Noto Kufi Arabic";
+  font-weight: 550;
+  font-size: 14px;
+}
+.price {
+  font-size: 16px;
+  color: #6f3c2e;
+  padding-left: 15px;
+  font-weight: bold;
+  font-family: "Roboto", "Noto Kufi Arabic";
+}
+.social-icons li {
+  display: inline-block;
+}
+.social-icons a {
+  color: #6f3c2e;
+  font-size: 22px;
+  display: inline-block;
+  line-height: 44px;
+  width: 44px;
+  height: 44px;
+  text-align: center;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.social-icons a:hover {
+  color: white;
+  background-color: #6f3c2e;
+}
+
+hr {
+  padding: 0px !important;
+  margin: 10px 10px !important;
+  opacity: 10%;
+}
+.category {
+  font-family: "Roboto", "Noto Kufi Arabic";
+  font-weight: 700;
+  color: #663a2a;
+}
+pagination-controls {
+  color: #663a2a;
+}

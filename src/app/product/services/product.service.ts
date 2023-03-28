@@ -12,4 +12,7 @@ export class ProductService {
   getPrdByID(id: string): Observable<Product> {
     return this.http.get<Product>(`${this.url}/product/${id}`);
   }
+  getAllProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.url}/product`);
+  }
 }
