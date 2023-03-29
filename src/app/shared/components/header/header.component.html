@@ -59,6 +59,7 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
               type="button"
+              [hidden]="token !== null"
               ><i class="bi bi-person-fill"></i
             ></a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -82,6 +83,7 @@
                 >
               </li>
             </ul>
+            <app-logout [hidden]="token == null"></app-logout>
           </div>
           <a class="p-2" type="button" routerLink="/cart"
             ><i class="bi bi-basket position-relative pe-2"></i>

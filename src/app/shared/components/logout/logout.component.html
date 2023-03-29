@@ -1,0 +1,28 @@
+<a
+  class="p-2"
+  id="dropdownMenuButton2"
+  data-bs-toggle="dropdown"
+  aria-expanded="false"
+  type="button"
+  ><i class="bi bi-person-fill"></i
+></a>
+<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+  <li class="px-3 py-1">
+    <a routerLink="/login" class="nav-link">HI,{{ name }}</a>
+  </li>
+  <li class="px-3 py-1">
+    <a class="nav-link"><i class="bi bi-person-fill"></i> My Account</a>
+  </li>
+  <li class="px-3 py-1">
+    <a class="nav-link"> <i class="bi bi-suit-heart-fill"></i> Wishlist</a>
+  </li>
+  <li class="px-3 py-1">
+    <a class="nav-link"><i class="bi bi-geo-alt-fill"></i> Address</a>
+  </li>
+  <li class="px-3 py-1">
+    <a class="nav-link"><i class="bi bi-cart-plus"></i> Orders</a>
+  </li>
+  <div class="d-flex justify-content-center">
+    <a (click)="logout()" class="btn w-75 log mt-3" type="button">logout</a>
+  </div>
+</ul>

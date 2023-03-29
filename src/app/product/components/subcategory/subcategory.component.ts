@@ -5,6 +5,7 @@ import { Product } from 'src/app/shared/models/product';
 import { Subcategory } from 'src/app/shared/models/subcategory';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { SubcategoryService } from 'src/app/shared/services/subcategory.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-subcategory',
@@ -23,7 +24,6 @@ export class SubcategoryComponent implements OnInit {
   ) {}
   getAllPrdForSub() {
     const subID = this.activeRoute.snapshot.paramMap.get('id');
-
     this.subCatService.getAllProdForSubcat(subID || '').subscribe((data) => {
       this.prdList = data;
       console.log(data);
@@ -31,6 +31,7 @@ export class SubcategoryComponent implements OnInit {
   }
   prdDetails(prdId: string) {
     this.router.navigate([`details/${prdId}`]);
+    window.scrollTo(0, 0);
   }
   //
   sort(event: any) {
@@ -41,14 +42,12 @@ export class SubcategoryComponent implements OnInit {
         );
         break;
       }
-
       case 'High': {
         this.prdList = this.prdList.sort(
           (low: any, high: any) => high.price - low.price
         );
         break;
       }
-
       case 'Name': {
         this.prdList = this.prdList.sort(function (low: any, high: any) {
           if (low.name < high.name) {
@@ -61,7 +60,6 @@ export class SubcategoryComponent implements OnInit {
         });
         break;
       }
-
       default: {
         this.prdList = this.prdList.sort(
           (low: any, high: any) => low.price - high.price
@@ -85,7 +83,7 @@ export class SubcategoryComponent implements OnInit {
           (item) => item.prd._id == prd._id
         );
         if (existProduct) {
-          alert('this product is already in your cart');
+          Swal.fire('This Product is already in your cart');
         } else {
           this.cartList.push({ prd, userId, amount });
           localStorage.setItem('cart', JSON.stringify(this.cartList));
@@ -95,9 +93,19 @@ export class SubcategoryComponent implements OnInit {
         localStorage.setItem('cart', JSON.stringify(this.cartList));
       }
     } else {
-      alert('you must be login first');
+      Swal.fire({
+        icon: 'error',
+        text: 'You must login first',
+      });
     }
     localStorage.setItem('cart', JSON.stringify(this.cartList));
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Product add to localStorge',
+      showConfirmButton: false,
+      timer: 1500,
+    });
   }
   ngOnInit(): void {
     this.getAllPrdForSub();

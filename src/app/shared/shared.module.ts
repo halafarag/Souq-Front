@@ -9,6 +9,8 @@ import { HomeComponent } from './components/home/home.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductModule } from '../product/product.module';
+import { LogoutComponent } from './components/logout/logout.component';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { ProductModule } from '../product/product.module';
     SliderComponent,
     FooterComponent,
     HomeComponent,
+    LogoutComponent,
+    DropdownComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +28,7 @@ import { ProductModule } from '../product/product.module';
     RouterModule,
     HttpClientModule,
     ProductModule,
+    RouterModule,
   ],
   exports: [
     HeaderComponent,
@@ -31,6 +36,8 @@ import { ProductModule } from '../product/product.module';
     SliderComponent,
     FooterComponent,
     HomeComponent,
+    LogoutComponent,
+    DropdownComponent,
   ],
 })
 export class SharedModule {}

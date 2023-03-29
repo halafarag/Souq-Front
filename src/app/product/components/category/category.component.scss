@@ -5,7 +5,6 @@ span {
   font-family: "Roboto", "Noto Kufi Arabic";
 }
 .card {
-  padding: 0;
   width: 266.5px;
   height: 420px;
   border-radius: 10px;
@@ -32,7 +31,7 @@ select {
 .img {
   width: 262.5px;
   height: 262.5px;
-  padding: 52px;
+  // padding: 52px;
 }
 
 .card-body {

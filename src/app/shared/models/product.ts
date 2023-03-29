@@ -9,7 +9,10 @@ export interface Product {
     _id: string;
     name: string;
   };
-  subcategory: object;
+  subcategory: {
+    _id: string;
+    name: string;
+  };
   quantity: number;
   discount: number;
 }

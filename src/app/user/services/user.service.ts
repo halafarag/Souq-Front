@@ -15,4 +15,7 @@ export class UserService {
   register(user: User): Observable<User> {
     return this.http.post<User>(`${this.url}/register`, user);
   }
+  logout(id: string) {
+    return this.http.get(`${this.url}/logout/${id}`);
+  }
 }

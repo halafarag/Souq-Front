@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/shared/models/category';
 import { Product } from 'src/app/shared/models/product';
 import { CategoryService } from 'src/app/shared/services/category.service';
+import Swal from 'sweetalert2';
 import { Cart } from '../../models/cart';
 
 @Component({
@@ -15,6 +16,7 @@ export class CategoryComponent implements OnInit {
   catList: Category[] = [];
   cartList: any[] = [];
   amount: number = 1;
+
   constructor(
     private catService: CategoryService,
     private activeRoute: ActivatedRoute,
@@ -22,13 +24,14 @@ export class CategoryComponent implements OnInit {
   ) {}
   getAllPrdForCat() {
     const catID = this.activeRoute.snapshot.paramMap.get('id');
-
     this.catService.getAllProdForCategory(catID || '').subscribe((data) => {
       this.prdList = data;
+      console.log(this.prdList[0].category?.name);
     });
   }
   prdDetails(prdId: string) {
     this.router.navigate([`details/${prdId}`]);
+    window.scrollTo(0, 0);
   }
   //
   sort(event: any) {
@@ -39,14 +42,12 @@ export class CategoryComponent implements OnInit {
         );
         break;
       }
-
       case 'High': {
         this.prdList = this.prdList.sort(
           (low: any, high: any) => high.price - low.price
         );
         break;
       }
-
       case 'Name': {
         this.prdList = this.prdList.sort(function (low: any, high: any) {
           if (low.name < high.name) {
@@ -59,7 +60,6 @@ export class CategoryComponent implements OnInit {
         });
         break;
       }
-
       default: {
         this.prdList = this.prdList.sort(
           (low: any, high: any) => low.price - high.price
@@ -85,7 +85,7 @@ export class CategoryComponent implements OnInit {
           (item) => item.prd._id == prd._id
         );
         if (existProduct) {
-          alert('this product is already in your cart');
+          Swal.fire('This Product is already in your cart');
         } else {
           this.cartList.push({ prd, userId, amount });
           localStorage.setItem('cart', JSON.stringify(this.cartList));
@@ -95,9 +95,19 @@ export class CategoryComponent implements OnInit {
         localStorage.setItem('cart', JSON.stringify(this.cartList));
       }
     } else {
-      alert('you must be login first');
+      Swal.fire({
+        icon: 'error',
+        text: 'You must login first',
+      });
     }
     localStorage.setItem('cart', JSON.stringify(this.cartList));
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Product add to localStorge',
+      showConfirmButton: false,
+      timer: 1500,
+    });
   }
   ngOnInit(): void {
     this.getAllPrdForCat();

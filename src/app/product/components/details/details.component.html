@@ -25,35 +25,12 @@
               <p class="price">{{ prd.price }} ج.م.‏</p>
               <p class="review">Package Quantity: {{ prd.volume }}</p>
               <p class="review">Qty::{{ prd.quantity }}</p>
-              <div class="review">
-                <div class="d-flex col-3">
-                  <span class="mt-2"> Qty:</span>
-                  <button
-                    class="btn btn-dark m-1 px-1"
-                    (click)="plusAmount(prd._id)"
-                  >
-                    +
-                  </button>
-                  <input
-                    class="form-control my-1"
-                    type="number"
-                    (change)="detectChange()"
-                    min="1"
-                  />
-                  <button
-                    class="btn btn-dark m-1 px-1"
-                    (click)="minusAmount(prd._id)"
-                  >
-                    -
-                  </button>
-                </div>
-              </div>
             </h5>
             <div class="add">
               <a
                 type="button"
                 class="btn my-3 col-6"
-                (click)="addToCart(prd._id, amount)"
+                (click)="addToLocalStorge(prd)"
                 >Add To Cart</a
               >
             </div>

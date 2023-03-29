@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/shared/models/product';
+import Swal from 'sweetalert2';
 import { Cart } from '../../models/cart';
 import { ProductService } from '../../services/product.service';
 
@@ -25,52 +26,38 @@ export class DetailsComponent implements OnInit {
       console.log(data);
     });
   }
-  addToCart(prdId: string, amount: number) {
+  addToLocalStorge(prd: any, amount = 1) {
     const userId = localStorage.getItem('id')!;
-    if ('cart' in localStorage) {
-      this.cartList = JSON.parse(localStorage.getItem('cart')!);
-      const existProduct = this.cartList.find(
-        (item) => item.productId == prdId
-      );
-      console.log(this.cartList);
-      if (existProduct) {
-        alert('this product is already in your cart');
+    if (userId) {
+      if ('cart' in localStorage) {
+        this.cartList = JSON.parse(localStorage.getItem('cart')!);
+        const existProduct = this.cartList.find(
+          (item) => item.prd._id == prd._id
+        );
+        if (existProduct) {
+          Swal.fire('This Product is already in your cart');
+        } else {
+          this.cartList.push({ prd, userId, amount });
+          localStorage.setItem('cart', JSON.stringify(this.cartList));
+        }
       } else {
-        this.cartList.push({ prdId, amount, userId });
+        this.cartList.push({ prd, userId, amount });
         localStorage.setItem('cart', JSON.stringify(this.cartList));
       }
     } else {
-      this.cartList.push({ prdId, amount, userId });
-      localStorage.setItem('cart', JSON.stringify(this.cartList));
+      Swal.fire({
+        icon: 'error',
+        text: 'You must login first',
+      });
     }
-    console.log(amount);
-  }
-  getCartTotal() {
-    this.total = 0;
-    //كل ما تعدي علي عنصر خد السعر بتاعه والكميه واضربهم في بعض وحطهم في التوتال
-    for (let x in this.cartList) {
-      this.total += this.cartList[x].prd.price * this.cartList[x].amount;
-    }
-  }
-  plusAmount(id: string) {
-    this.cartList.find((item) => {
-      item.id.amount++;
+    localStorage.setItem('cart', JSON.stringify(this.cartList));
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Product add to localStorge',
+      showConfirmButton: false,
+      timer: 1500,
     });
-    //update total
-    this.getCartTotal();
-    //update localStorge
-    localStorage.setItem('cart', JSON.stringify(this.cartList));
-  }
-  minusAmount(id: string) {
-    this.cartList.find((item) => {
-      item.id.amount--;
-    });
-    this.getCartTotal();
-    localStorage.setItem('cart', JSON.stringify(this.cartList));
-  }
-  detectChange() {
-    this.getCartTotal();
-    localStorage.setItem('cart', JSON.stringify(this.cartList));
   }
 
   ngOnInit(): void {
