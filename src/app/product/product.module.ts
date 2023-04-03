@@ -12,6 +12,7 @@ import { DiscProductComponent } from './disc-product/disc-product.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { FormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     NgxPaginationModule,
     FormsModule,
+    Ng2SearchPipeModule,
   ],
   exports: [
     DetailsComponent,

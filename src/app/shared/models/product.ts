@@ -1,4 +1,5 @@
 export interface Product {
+  toLowerCase(): unknown;
   _id: string;
   name: string;
   discription: string;

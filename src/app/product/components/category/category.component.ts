@@ -20,8 +20,7 @@ export class CategoryComponent implements OnInit {
   addedToFav: boolean = false;
   amount: number = 1;
   isLoading: boolean = false;
-  public searchInput: string = '';
-
+  searchText: string = '';
   constructor(
     private catService: CategoryService,
     private activeRoute: ActivatedRoute,
