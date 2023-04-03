@@ -16,6 +16,7 @@ export class SubcategoryComponent implements OnInit {
   prdList: Product[] = [];
   catList: Category[] = [];
   cartList: any[] = [];
+  isLoading: boolean = false;
   constructor(
     private subCatService: SubcategoryService,
     private catService: CategoryService,
@@ -23,9 +24,11 @@ export class SubcategoryComponent implements OnInit {
     private router: Router
   ) {}
   getAllPrdForSub() {
+    this.isLoading = true;
     const subID = this.activeRoute.snapshot.paramMap.get('id');
     this.subCatService.getAllProdForSubcat(subID || '').subscribe((data) => {
       this.prdList = data;
+      this.isLoading = false;
       console.log(data);
     });
   }

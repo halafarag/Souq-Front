@@ -6,10 +6,12 @@ import { CategoryComponent } from './components/category/category.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { AllProductComponent } from './all-product/all-product.component';
+import { AllProductComponent } from './components/all-product/all-product.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DiscProductComponent } from './disc-product/disc-product.component';
-import { SearchComponent } from './search/search.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { WishListComponent } from './components/wish-list/wish-list.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { SearchComponent } from './search/search.component';
     CategoryComponent,
     AllProductComponent,
     DiscProductComponent,
-    SearchComponent,
+    LoaderComponent,
+    WishListComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +29,7 @@ import { SearchComponent } from './search/search.component';
     RouterModule,
     HttpClientModule,
     NgxPaginationModule,
+    FormsModule,
   ],
   exports: [
     DetailsComponent,
@@ -33,7 +37,8 @@ import { SearchComponent } from './search/search.component';
     CategoryComponent,
     AllProductComponent,
     DiscProductComponent,
-    SearchComponent,
+    LoaderComponent,
+    WishListComponent,
   ],
 })
 export class ProductModule {}

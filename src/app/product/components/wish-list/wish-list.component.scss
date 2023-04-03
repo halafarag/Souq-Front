@@ -1,0 +1,43 @@
+.card {
+  border: solid 1px #663a2a;
+}
+span,
+th,
+h1,
+td {
+  font-family: "Roboto", "Noto Kufi Arabic" !important;
+}
+.dilver {
+  color: #6f3c2e;
+  font-weight: bold;
+  font-family: "Roboto", "Noto Kufi Arabic" !important;
+}
+.CheckOut {
+  background-color: #663a2a;
+  color: white;
+}
+.bi-trash3 {
+  color: #e5444c;
+  font-weight: bold !important;
+  font-size: 20px;
+}
+h1 {
+  font-size: 21px;
+  font-weight: 700;
+  color: #663a2a;
+}
+td {
+  vertical-align: middle;
+}
+.color {
+  color: #6f3c2e;
+  font-weight: bold;
+}
+.add {
+  color: #6f3c2e;
+  border: solid 1px #6f3c2e;
+}
+.add:hover {
+  color: white;
+  background-color: #6f3c2e;
+}

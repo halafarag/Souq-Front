@@ -12,7 +12,7 @@
             let prd of prdList | paginate : { itemsPerPage: 4, currentPage: p }
           "
         >
-          <div class="img">
+          <div class="img" (click)="prdDetails(prd._id)">
             <img
               src="{{ prd.img[0] }}"
               class="card-img-top"
@@ -36,7 +36,9 @@
                   </a>
                 </li>
                 <li>
-                  <a class="hover mx-2 shadow-sm"
+                  <a
+                    class="hover mx-2 shadow-sm"
+                    (click)="addToLocalStorge(prd)"
                     ><i class="bi bi-basket position-relative"></i
                   ></a>
                 </li>

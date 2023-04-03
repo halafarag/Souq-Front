@@ -5,6 +5,7 @@ import { Product } from 'src/app/shared/models/product';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import Swal from 'sweetalert2';
 import { Cart } from '../../models/cart';
+import { FavouritService } from '../../services/favourit.service';
 
 @Component({
   selector: 'app-category',
@@ -15,18 +16,25 @@ export class CategoryComponent implements OnInit {
   prdList: Product[] = [];
   catList: Category[] = [];
   cartList: any[] = [];
+  favList: any[] = [];
+  addedToFav: boolean = false;
   amount: number = 1;
+  isLoading: boolean = false;
+  public searchInput: string = '';
 
   constructor(
     private catService: CategoryService,
     private activeRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private favService: FavouritService
   ) {}
   getAllPrdForCat() {
+    this.isLoading = true;
     const catID = this.activeRoute.snapshot.paramMap.get('id');
     this.catService.getAllProdForCategory(catID || '').subscribe((data) => {
       this.prdList = data;
-      console.log(this.prdList[0].category?.name);
+      this.isLoading = false;
+      // console.log(this.prdList[0].category?.name);
     });
   }
   prdDetails(prdId: string) {
@@ -109,6 +117,27 @@ export class CategoryComponent implements OnInit {
       timer: 1500,
     });
   }
+  addToFav(prd: any) {
+    // console.log(prd);
+    const userId = localStorage.getItem('id')!;
+    if ('favourite' in localStorage) {
+      this.favList = JSON.parse(localStorage.getItem('favourite')!);
+      console.log(this.favList);
+      const existProduct = this.favList.find((item) => item.prd._id == prd._id);
+
+      if (existProduct) {
+        alert('this product is already in your favourite');
+      } else {
+        this.favList.push({ prd, userId });
+        localStorage.setItem('favourite', JSON.stringify(this.favList));
+      }
+    } else {
+      this.addedToFav = true;
+      this.favList.push({ prd, userId });
+      localStorage.setItem('favourite', JSON.stringify(this.favList));
+    }
+  }
+
   ngOnInit(): void {
     this.getAllPrdForCat();
     this.getAllCategory();

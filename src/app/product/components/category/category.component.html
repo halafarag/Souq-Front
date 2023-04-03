@@ -1,10 +1,23 @@
 <div class="container mt-5">
+  <div *ngIf="isLoading"><app-loader></app-loader></div>
   <div class="row bg-light col-11 m-auto my-5">
     <span class="p-3" style="color: #43464b"
       ><i class="bi bi-house-door-fill"></i> /
       {{ prdList[0]?.category?.name }}
     </span>
   </div>
+  <!--  -->
+  <section>
+    <h5>Dynamic search results</h5>
+    <input
+      name="searchInput"
+      type="text"
+      placeholder="Search for programming languages"
+      size="50"
+      [(ngModel)]="searchInput"
+    />
+  </section>
+  <!--  -->
   <div class="row d-flex justify-content-around col-9">
     <div class="form-group col-md-4 col-xs-12">
       <select
@@ -72,8 +85,11 @@
           <div class="text-center">
             <ul class="social-icons" style="padding-left: 0px">
               <li>
-                <a class="hover mx-2 shadow-sm"
-                  ><i class="bi bi-suit-heart border-0"></i>
+                <a class="hover mx-2 shadow-sm">
+                  <i
+                    (click)="addToFav(prd)"
+                    class="bi bi-suit-heart border-0"
+                  ></i>
                 </a>
               </li>
               <li>

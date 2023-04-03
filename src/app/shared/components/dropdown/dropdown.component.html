@@ -1,0 +1,24 @@
+<a
+  class="p-2"
+  id="dropdownMenuButton1"
+  data-bs-toggle="dropdown"
+  aria-expanded="false"
+  type="button"
+  [hidden]="token !== null"
+  ><i class="bi bi-person-fill"></i
+></a>
+<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+  <li class="d-flex justify-content-center">
+    <a routerLink="/login" class="btn p-2 w-75 m-auto log" type="button"
+      >Log In</a
+    >
+  </li>
+  <li class="d-flex justify-content-center">
+    <a class="nav-link text-dark text-center" type="button">or</a>
+  </li>
+  <li class="d-flex justify-content-center">
+    <a routerLink="/register" class="btn p-2 w-75 m-auto log" type="button"
+      >Register</a
+    >
+  </li>
+</ul>

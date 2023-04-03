@@ -1,0 +1,46 @@
+<div class="container table-responsive mb-5">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-md-11 col-xs-12">
+      <h1 class="">Wishlist</h1>
+      <table class="table">
+        <thead>
+          <tr class="text-center" style="font-size: 14px; color: #6f3c2e">
+            <th scope="col">Image</th>
+            <th scope="col">Product(S)</th>
+            <th scope="col">Price</th>
+            <th scope="col">Qty.</th>
+            <th scope="col">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="text-center"
+            *ngFor="let fav of wishList; let index = index"
+          >
+            <th>
+              <img src="{{ fav.prd.img[0] }}" width="80" height="80" />
+            </th>
+            <td style="color: #f6b0ab" class="fw-bold">
+              {{ fav.prd.name }}
+            </td>
+            <td class="color">{{ fav.prd.price }} ج.م.‏</td>
+            <td>{{ fav.prd.volume }}</td>
+            <td>
+              <a type="button" (click)="deletePrd(index)"
+                ><i class="bi bi-trash3"></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-end">
+        <a
+          type="button"
+          class="btn add col-md-3 col-xs-auto"
+          (click)="addToFav()"
+          >Add To wishList</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
