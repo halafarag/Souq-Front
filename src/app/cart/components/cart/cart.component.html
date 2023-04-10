@@ -93,7 +93,10 @@
         </div>
       </div>
       <div>
-        <a type="button" class="btn CheckOut my-3 fs-6 col-12"
+        <a
+          type="button"
+          class="btn CheckOut my-3 fs-6 col-12"
+          (click)="makePayment(cartList, total + 20)"
           ><i class="bi bi-basket pe-2"></i>CheckOut</a
         >
       </div>

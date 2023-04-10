@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { CartService } from '../../services/cart.service';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,7 +11,10 @@ import { CartService } from '../../services/cart.service';
 export class CartComponent implements OnInit {
   cartList: any[] = [];
   total: number = 0;
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private OrderService: OrderService
+  ) {}
   getCartFromLocalStorge() {
     if ('cart' in localStorage) {
       this.cartList = JSON.parse(localStorage.getItem('cart')!);
@@ -66,7 +70,58 @@ export class CartComponent implements OnInit {
 
     // console.log(model);
   }
+  // payment
+  paymentHandler: any = null;
+  stripeAPIKey: any =
+    'pk_test_51MswKCF4JH7vyFXTlnqNutkXQGdIh0Lqi0puBGuiuTuUt9kHcVTYZCjWDBM9rTAvmN13PrK3KufcKh6I3RjUhufG00Nrz997ZL';
+  makePayment(cartList: any, total: number) {
+    const paymentHandler = (<any>window).StripeCheckout.configure({
+      key: this.stripeAPIKey,
+      locale: 'auto',
+      token: function (stripeToken: any) {
+        console.log(stripeToken);
+
+        paymentStripe(stripeToken);
+        alert('Stripe token generated!');
+      },
+    });
+    const paymentStripe = (stripeToken: any) => {
+      this.OrderService.makePayment(total, stripeToken, cartList).subscribe(
+        (data) => {
+          console.log(data);
+        }
+      );
+    };
+    paymentHandler.open({
+      name: 'Al_Azhar Team',
+      description: 'Graduation project for  Al_Azhar Team',
+      amount: total * 40,
+    });
+  }
+
+  invokeStripe() {
+    if (!window.document.getElementById('stripe-script')) {
+      const script = window.document.createElement('script');
+
+      script.id = 'stripe-script';
+      script.type = 'text/javascript';
+      script.src = 'https://checkout.stripe.com/checkout.js';
+      script.onload = () => {
+        this.paymentHandler = (<any>window).StripeCheckout.configure({
+          key: this.stripeAPIKey,
+          locale: 'auto',
+          token: function (stripeToken: any) {
+            console.log(stripeToken);
+            alert('Payment has been successfull!');
+          },
+        });
+      };
+
+      window.document.body.appendChild(script);
+    }
+  }
   ngOnInit(): void {
     this.getCartFromLocalStorge();
+    this.invokeStripe();
   }
 }
