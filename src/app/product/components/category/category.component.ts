@@ -6,6 +6,8 @@ import { CategoryService } from 'src/app/shared/services/category.service';
 import Swal from 'sweetalert2';
 import { Cart } from '../../models/cart';
 import { FavouritService } from '../../services/favourit.service';
+import { BehaviorSubject } from 'rxjs';
+import { CartService } from 'src/app/cart/services/cart.service';
 
 @Component({
   selector: 'app-category',
@@ -21,11 +23,12 @@ export class CategoryComponent implements OnInit {
   amount: number = 1;
   isLoading: boolean = false;
   searchText: string = '';
+
   constructor(
     private catService: CategoryService,
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private favService: FavouritService
+    private cartService: CartService
   ) {}
   getAllPrdForCat() {
     this.isLoading = true;
@@ -108,13 +111,7 @@ export class CategoryComponent implements OnInit {
       });
     }
     localStorage.setItem('cart', JSON.stringify(this.cartList));
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Product add to localStorge',
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    this.cartService.setCartCount(this.cartList.length);
   }
   addToFav(prd: any) {
     // console.log(prd);

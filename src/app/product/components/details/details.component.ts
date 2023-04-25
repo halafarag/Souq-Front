@@ -13,6 +13,8 @@ import { ProductService } from '../../services/product.service';
 export class DetailsComponent implements OnInit {
   prd: Product = {} as Product;
   cartList: any[] = [];
+  favList: any[] = [];
+  addedToFav: boolean = false;
   amount: number = 0;
   total: any = 0;
   constructor(
@@ -58,6 +60,27 @@ export class DetailsComponent implements OnInit {
       showConfirmButton: false,
       timer: 1500,
     });
+  }
+
+  addToFav(prd: any) {
+    // console.log(prd);
+    const userId = localStorage.getItem('id')!;
+    if ('favourite' in localStorage) {
+      this.favList = JSON.parse(localStorage.getItem('favourite')!);
+      console.log(this.favList);
+      const existProduct = this.favList.find((item) => item.prd._id == prd._id);
+
+      if (existProduct) {
+        alert('this product is already in your favourite');
+      } else {
+        this.favList.push({ prd, userId });
+        localStorage.setItem('favourite', JSON.stringify(this.favList));
+      }
+    } else {
+      this.addedToFav = true;
+      this.favList.push({ prd, userId });
+      localStorage.setItem('favourite', JSON.stringify(this.favList));
+    }
   }
 
   ngOnInit(): void {

@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-0" routerLink="/"
       ><img
-        src="https://elabdfoods.com/images/thumbs/0000525_storeEnglishLogo.png"
+        src="https://img.freepik.com/premium-vector/person-with-shopping-cart-shop-purchase-sale-line-icon-shopper-delivery-sign_352905-1226.jpg?w=2000"
         width="90"
         height="90"
         class="ms-4"
@@ -61,7 +61,7 @@
             <span
               class="position-absolute top-70 start-90 translate-middle badge rounded-pill"
             >
-              {{ cartList.length }}
+              {{ cartCount$ | async }}
             </span></a
           >
           <a class="p-2 pe-0" type="button"

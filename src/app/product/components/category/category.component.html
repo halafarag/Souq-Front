@@ -86,10 +86,10 @@
           <hr />
           <!--  -->
 
-          <div class="text-center">
+          <div class="text-center" *ngIf="prd.quantity >= 1">
             <ul class="social-icons" style="padding-left: 0px">
               <li>
-                <a class="hover mx-2 shadow-sm">
+                <a class="hover mx-2 shadow-sm" type="button">
                   <i
                     (click)="addToFav(prd)"
                     class="bi bi-suit-heart border-0"
@@ -98,12 +98,16 @@
               </li>
               <li>
                 <a
+                  type="button"
                   class="hover mx-2 shadow-sm border-0"
                   (click)="addToLocalStorge(prd)"
                   ><i class="bi bi-basket"></i
                 ></a>
               </li>
             </ul>
+          </div>
+          <div class="text-center text-danger" *ngIf="prd.quantity == 0">
+            Out Of Stock
           </div>
         </div>
       </div>

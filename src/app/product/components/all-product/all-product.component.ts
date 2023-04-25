@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Product } from 'src/app/shared/models/product';
 import Swal from 'sweetalert2';
 import { ProductService } from '../../services/product.service';
+import { CartService } from 'src/app/cart/services/cart.service';
 
 @Component({
   selector: 'app-all-product',
@@ -16,7 +17,11 @@ export class AllProductComponent implements OnInit {
   prd: any;
   p: number = 1;
   public searchInput: string = '';
-  constructor(private prdSrvice: ProductService, private router: Router) {
+  constructor(
+    private prdSrvice: ProductService,
+    private router: Router,
+    private cartService: CartService
+  ) {
     for (let i = 1; i <= 100; i++) {
       this.prdList.push();
     }
@@ -57,13 +62,7 @@ export class AllProductComponent implements OnInit {
       });
     }
     localStorage.setItem('cart', JSON.stringify(this.cartList));
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Product add to localStorge',
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    this.cartService.setCartCount(this.cartList.length);
   }
 
   ngOnInit(): void {

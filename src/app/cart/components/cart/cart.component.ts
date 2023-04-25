@@ -33,6 +33,7 @@ export class CartComponent implements OnInit {
     this.cartList.splice(index, 1);
     this.getCartTotal();
     localStorage.setItem('cart', JSON.stringify(this.cartList));
+    this.cartService.setCartCount(this.cartList.length);
   }
   plusAmount(index: number) {
     this.cartList[index].amount++;

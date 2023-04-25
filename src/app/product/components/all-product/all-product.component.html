@@ -28,7 +28,7 @@
             </div>
             <hr />
 
-            <div class="text-center">
+            <div class="text-center" *ngIf="prd.quantity >= 1">
               <ul class="social-icons" style="padding-left: 0px">
                 <li>
                   <a class="hover mx-2 shadow-sm"
@@ -43,6 +43,9 @@
                   ></a>
                 </li>
               </ul>
+            </div>
+            <div class="text-center text-danger" *ngIf="prd.quantity == 0">
+              Out Of Stock
             </div>
           </div>
         </div>

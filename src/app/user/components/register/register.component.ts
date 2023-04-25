@@ -2,16 +2,20 @@ import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
-  FormGroup,
+  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidators } from 'src/app/confirmed.alidators';
 import Swal from 'sweetalert2';
 import { UserService } from '../../services/user.service';
+import { CommonModule, NgIf } from '@angular/common';
+import { ErrorMessageComponent } from '../error-message/error-message.component';
 
 @Component({
   selector: 'app-register',
+  standalone: true,
+  imports: [NgIf, ReactiveFormsModule, ErrorMessageComponent, CommonModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
@@ -23,18 +27,21 @@ export class RegisterComponent {
   ) {}
   registerForm = this.fb.group(
     {
-      firstName: [''],
-      lastName: [''],
-      emailAdress: [''],
-      moblieNum: [''],
-      gender: [''],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      emailAdress: ['', [Validators.required, Validators.email]],
+      moblieNum: [
+        '',
+        [Validators.required, Validators.pattern('^((\\+20-?)|0)?[0-9]{10}$')],
+      ],
+      gender: ['', Validators.required],
       dateOfBirth: this.fb.group({
         day: [''],
         month: [''],
         year: [''],
       }),
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
+      password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]],
     },
     {
       validator: CustomValidators.MatchValidator('password', 'confirmPassword'),
@@ -47,7 +54,7 @@ export class RegisterComponent {
       this.registerForm.get('confirmPassword')?.touched
     );
   }
-  get controlName() {
+  get registerFormControl() {
     return this.registerForm.controls;
   }
   dayList: number[] = [
@@ -71,7 +78,7 @@ export class RegisterComponent {
         showConfirmButton: false,
         timer: 1500,
       });
-      this.router.navigate(['']);
+      this.router.navigate(['/login']);
       window.scrollTo(0, 0);
     });
   }

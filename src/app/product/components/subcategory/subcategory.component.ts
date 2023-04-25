@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from 'src/app/cart/services/cart.service';
 import { Category } from 'src/app/shared/models/category';
 import { Product } from 'src/app/shared/models/product';
 import { Subcategory } from 'src/app/shared/models/subcategory';
@@ -24,7 +25,8 @@ export class SubcategoryComponent implements OnInit {
     private subCatService: SubcategoryService,
     private catService: CategoryService,
     private activeRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) {}
   getAllPrdForSub() {
     this.isLoading = true;
@@ -105,13 +107,7 @@ export class SubcategoryComponent implements OnInit {
       });
     }
     localStorage.setItem('cart', JSON.stringify(this.cartList));
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Product add to localStorge',
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    this.cartService.setCartCount(this.cartList.length);
   }
   addToFav(prd: any) {
     // console.log(prd);

@@ -10,6 +10,7 @@ import { ProductModule } from './product/product.module';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProductModule,
     CartModule,
     NgbModule,
+    CommonModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

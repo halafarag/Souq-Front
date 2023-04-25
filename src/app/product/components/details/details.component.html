@@ -10,7 +10,7 @@
         </div>
         <div class="col-xs-12 col-sm-7 col-md-7">
           <div class="card-body ps-4">
-            <h1 class="card-title">Oriental Nuts Mix</h1>
+            <h1 class="card-title">{{ prd.name }}</h1>
             <p class="discrip">
               {{ prd.discription }}
             </p>
@@ -35,7 +35,10 @@
               >
             </div>
             <div>
-              <a class="nav-link ps-0 favs" type="button"
+              <a
+                class="nav-link ps-0 favs hover"
+                type="button"
+                (click)="addToFav(prd)"
                 ><i class="bi bi-suit-heart me-2"></i>Add To WishList</a
               >
             </div>
