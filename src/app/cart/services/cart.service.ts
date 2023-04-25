@@ -9,10 +9,10 @@ import { Cart } from '../models/cart';
 export class CartService {
   private cartCount = new ReplaySubject<number>(1);
   cartCount$ = this.cartCount.asObservable();
-
+  url = `https://souq-back-end.vercel.app`;
   constructor(private http: HttpClient) {}
   addToCart(model: any): Observable<any> {
-    return this.http.post<any>(`http://localhost:5000/cart`, model);
+    return this.http.post<any>(`${this.url}/cart`, model);
   }
   setCartCount(count: number) {
     // encapsulate with logic to set local storage

@@ -7,13 +7,14 @@ import { Favourit } from '../models/favourit';
   providedIn: 'root',
 })
 export class FavouritService {
+  url = `https://souq-back-end.vercel.app`;
   private httpOPtions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       token: localStorage.getItem('accessToken')!,
     }),
   };
-  url = `http://localhost:5000`;
+
   constructor(private http: HttpClient) {}
   addToFav(model: any): Observable<any> {
     return this.http.post<Favourit>(`${this.url}/favs`, model);
