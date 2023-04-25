@@ -1,9 +1,9 @@
 export interface User {
   id?: string;
-  firstName?: string;
-  lastName?: string;
-  emailAdress?: string;
-  moblieNum?: string;
+  firstName: string | null;
+  lastName: string | null;
+  emailAdress: string | null;
+  moblieNum: string | null;
   password?: string;
   confirmPassword?: string;
   gender?: string;
