@@ -3,7 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/shared/models/category';
 import { Product } from 'src/app/shared/models/product';
 import { CategoryService } from 'src/app/shared/services/category.service';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
+
 import { CartService } from 'src/app/cart/services/cart.service';
 
 @Component({
@@ -92,7 +93,7 @@ export class CategoryComponent implements OnInit {
           (item) => item.prd._id == prd._id
         );
         if (existProduct) {
-          // Swal.fire('This Product is already in your cart');
+          Swal.fire('This Product is already in your cart');
         } else {
           this.cartList.push({ prd, userId, amount });
           localStorage.setItem('cart', JSON.stringify(this.cartList));
@@ -102,10 +103,10 @@ export class CategoryComponent implements OnInit {
         localStorage.setItem('cart', JSON.stringify(this.cartList));
       }
     } else {
-      // Swal.fire({
-      //   icon: 'error',
-      //   text: 'You must login first',
-      // });
+      Swal.fire({
+        icon: 'error',
+        text: 'You must login first',
+      });
     }
     localStorage.setItem('cart', JSON.stringify(this.cartList));
     this.cartService.setCartCount(this.cartList.length);
