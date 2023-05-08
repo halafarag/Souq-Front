@@ -12,6 +12,7 @@ import { ProductModule } from '../product/product.module';
 import { LogoutComponent } from './components/logout/logout.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { FormsModule } from '@angular/forms';
+import { AdsComponent } from './components/ads/ads.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     LogoutComponent,
     DropdownComponent,
+    AdsComponent,
   ],
   imports: [
     CommonModule,

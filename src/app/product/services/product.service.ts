@@ -8,6 +8,7 @@ import { Product } from 'src/app/shared/models/product';
 })
 export class ProductService {
   url = `https://souq-back-end.vercel.app`;
+  // url = `http://localhost:5000`;
   constructor(private http: HttpClient) {}
   getPrdByID(id: string): Observable<Product> {
     return this.http.get<Product>(`${this.url}/product/${id}`);

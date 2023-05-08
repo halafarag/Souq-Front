@@ -8,6 +8,7 @@ import { Subcategory } from '../models/subcategory';
   providedIn: 'root',
 })
 export class SubcategoryService {
+  // url = `http://localhost:5000`;
   url = `https://souq-back-end.vercel.app`;
   constructor(private http: HttpClient) {}
   getAllSubcat(): Observable<Subcategory[]> {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/shared/models/category';
 import { Product } from 'src/app/shared/models/product';
@@ -12,7 +12,7 @@ import { CartService } from 'src/app/cart/services/cart.service';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss'],
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent implements OnInit, OnChanges {
   prdList: Product[] = [];
   catList: Category[] = [];
   cartList: any[] = [];
@@ -21,6 +21,7 @@ export class CategoryComponent implements OnInit {
   amount: number = 1;
   isLoading: boolean = false;
   searchText: string = '';
+  catID: string = '';
 
   constructor(
     private catService: CategoryService,
@@ -28,14 +29,25 @@ export class CategoryComponent implements OnInit {
     private router: Router,
     private cartService: CartService
   ) {}
+  ngOnChanges(): void {
+    // this.getAllPrdForCat();
+  }
   getAllPrdForCat() {
     this.isLoading = true;
-    const catID = this.activeRoute.snapshot.paramMap.get('id');
-    this.catService.getAllProdForCategory(catID || '').subscribe((data) => {
-      this.prdList = data;
-      this.isLoading = false;
-      // console.log(this.prdList[0].category?.name);
+    // const catID = this.activeRoute.snapshot.paramMap.get('id');
+    this.activeRoute.paramMap.subscribe((paramMap) => {
+      this.catID = paramMap.get('id')!;
     });
+    console.log(this.catID);
+    this.router.navigate(['cat', this.catID]);
+
+    this.catService
+      .getAllProdForCategory(this.catID || '')
+      .subscribe((data) => {
+        this.prdList = data;
+        this.isLoading = false;
+        // console.log(this.prdList[0].category?.name);
+      });
   }
   prdDetails(prdId: string) {
     this.router.navigate([`details/${prdId}`]);
