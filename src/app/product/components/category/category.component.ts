@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/shared/models/category';
 import { Product } from 'src/app/shared/models/product';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import Swal from 'sweetalert2';
-import { Cart } from '../../models/cart';
-import { FavouritService } from '../../services/favourit.service';
-import { BehaviorSubject } from 'rxjs';
+
 import { CartService } from 'src/app/cart/services/cart.service';
 
 @Component({
@@ -14,7 +12,7 @@ import { CartService } from 'src/app/cart/services/cart.service';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss'],
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent implements OnInit, OnChanges {
   prdList: Product[] = [];
   catList: Category[] = [];
   cartList: any[] = [];
@@ -31,11 +29,18 @@ export class CategoryComponent implements OnInit {
     private router: Router,
     private cartService: CartService
   ) {}
+  ngOnChanges(): void {
+    // this.getAllPrdForCat();
+  }
   getAllPrdForCat() {
     this.isLoading = true;
     this.activeRoute.params.subscribe((val) => {
       this.catID = val['id'];
     });
+
+    console.log(this.catID);
+    this.router.navigate(['cat', this.catID]);
+
     this.catService
       .getAllProdForCategory(this.catID || '')
       .subscribe((data) => {

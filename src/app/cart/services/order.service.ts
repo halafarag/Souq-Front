@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class OrderService {
+  // url = `http://localhost:5000`;
   url = `https://souq-back-end.vercel.app`;
   constructor(private http: HttpClient) {}
   makePayment(total: number, stripeToken: any, cartList: any): Observable<any> {

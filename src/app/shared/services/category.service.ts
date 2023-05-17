@@ -10,7 +10,7 @@ import { Subcategory } from '../models/subcategory';
 })
 export class CategoryService {
   url = `https://souq-back-end.vercel.app`;
-
+  // url = `http://localhost:5000`;
   constructor(private http: HttpClient) {}
   getAllCategory(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.url}/category`);

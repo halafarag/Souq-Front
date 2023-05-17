@@ -8,7 +8,7 @@ import { User } from '../models/user';
 })
 export class UserService {
   url = `https://souq-back-end.vercel.app/users`;
-
+  // url = `http://localhost:5000/users`;
   constructor(private http: HttpClient) {}
   login(user: User): Observable<User> {
     return this.http.post<User>(`${this.url}/login`, user);
