@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { Category } from 'src/app/shared/models/category';
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
   templateUrl: './subcategory.component.html',
   styleUrls: ['./subcategory.component.scss'],
 })
-export class SubcategoryComponent implements OnInit {
+export class SubcategoryComponent implements OnInit, OnChanges {
   prdList: Product[] = [];
   catList: Category[] = [];
   cartList: any[] = [];
@@ -29,11 +29,14 @@ export class SubcategoryComponent implements OnInit {
     private router: Router,
     private cartService: CartService
   ) {}
-  getAllPrdForSub() {
-    this.isLoading = true;
+  ngOnChanges(): void {
     this.activeRoute.params.subscribe((val) => {
       this.subID = val['id'];
     });
+  }
+  getAllPrdForSub() {
+    this.isLoading = true;
+
     this.subCatService
       .getAllProdForSubcat(this.subID || '')
       .subscribe((data) => {
