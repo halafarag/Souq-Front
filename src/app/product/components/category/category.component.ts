@@ -23,6 +23,7 @@ export class CategoryComponent implements OnInit {
   amount: number = 1;
   isLoading: boolean = false;
   searchText: string = '';
+  catID!: string;
 
   constructor(
     private catService: CategoryService,
@@ -32,12 +33,16 @@ export class CategoryComponent implements OnInit {
   ) {}
   getAllPrdForCat() {
     this.isLoading = true;
-    const catID = this.activeRoute.snapshot.paramMap.get('id');
-    this.catService.getAllProdForCategory(catID || '').subscribe((data) => {
-      this.prdList = data;
-      this.isLoading = false;
-      // console.log(this.prdList[0].category?.name);
+    this.activeRoute.params.subscribe((val) => {
+      this.catID = val['id'];
     });
+    this.catService
+      .getAllProdForCategory(this.catID || '')
+      .subscribe((data) => {
+        this.prdList = data;
+        this.isLoading = false;
+        // console.log(this.prdList[0].category?.name);
+      });
   }
   prdDetails(prdId: string) {
     this.router.navigate([`details/${prdId}`]);

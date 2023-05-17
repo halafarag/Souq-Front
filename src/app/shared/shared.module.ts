@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductModule } from '../product/product.module';
 import { LogoutComponent } from './components/logout/logout.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
     HttpClientModule,
     ProductModule,
     RouterModule,
+    FormsModule,
   ],
   exports: [
     HeaderComponent,
