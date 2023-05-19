@@ -21,7 +21,7 @@ export class CategoryComponent implements OnInit, OnChanges {
   amount: number = 1;
   isLoading: boolean = false;
   searchText: string = '';
-  catID: string = '';
+  catID!: string;
 
   constructor(
     private catService: CategoryService,
@@ -34,10 +34,10 @@ export class CategoryComponent implements OnInit, OnChanges {
   }
   getAllPrdForCat() {
     this.isLoading = true;
-    // const catID = this.activeRoute.snapshot.paramMap.get('id');
-    this.activeRoute.paramMap.subscribe((paramMap) => {
-      this.catID = paramMap.get('id')!;
+    this.activeRoute.params.subscribe((val) => {
+      this.catID = val['id'];
     });
+
     console.log(this.catID);
     this.router.navigate(['cat', this.catID]);
 

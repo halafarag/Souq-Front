@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [LoginComponent],
