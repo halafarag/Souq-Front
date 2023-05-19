@@ -13,6 +13,8 @@ import { CartService } from 'src/app/cart/services/cart.service';
 export class AllProductComponent implements OnInit {
   prdList: Product[] = [];
   cartList: any[] = [];
+  favList: any[] = [];
+  addedToFav: boolean = false;
   selectedPage: number = 1;
   prd: any;
   p: number = 1;
@@ -64,7 +66,37 @@ export class AllProductComponent implements OnInit {
     localStorage.setItem('cart', JSON.stringify(this.cartList));
     this.cartService.setCartCount(this.cartList.length);
   }
+  addToFav(prd: any) {
+    // console.log(prd);
+    const userId = localStorage.getItem('id')!;
+    if ('favourite' in localStorage) {
+      this.favList = JSON.parse(localStorage.getItem('favourite')!);
+      console.log(this.favList);
+      const existProduct = this.favList.find((item) => item.prd._id == prd._id);
 
+      if (existProduct) {
+        alert('this product is already in your favourite');
+      } else {
+        this.favList.push({ prd, userId });
+        localStorage.setItem('favourite', JSON.stringify(this.favList));
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        Toast.fire({
+          icon: 'success',
+          title: 'This Product Added To Your Favourite Successfully',
+        });
+      }
+    } else {
+      this.addedToFav = true;
+      this.favList.push({ prd, userId });
+      localStorage.setItem('favourite', JSON.stringify(this.favList));
+    }
+  }
   ngOnInit(): void {
     this.getAllPrds();
   }

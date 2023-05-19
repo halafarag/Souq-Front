@@ -16,12 +16,12 @@
             </p>
             <h5 class="">
               <p class="review">1 Review(S) | Add Your Review</p>
-              <p class="review" *ngIf="prd.quantity >= 1">
-                Availability:In stock
-              </p>
-              <p class="review" *ngIf="prd.quantity == 0">
-                Availability:Out Of stock
-              </p>
+              <ng-container *ngIf="prd.quantity >= 0; else outOfStock">
+                <p class="review">Availability:In stock</p>
+              </ng-container>
+              <ng-template #outOfStock>
+                <p class="review">Availability:Out Of stock</p>
+              </ng-template>
               <p class="price">{{ prd.price }} ج.م.‏</p>
               <p class="review">Package Quantity: {{ prd.volume }}</p>
               <p class="review">Qty::{{ prd.quantity }}</p>

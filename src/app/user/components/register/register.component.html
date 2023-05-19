@@ -138,7 +138,13 @@
             Password does not match
           </small>
         </div>
-        <button type="submit" class="btn w-100">Register</button>
+        <button
+          type="submit"
+          class="btn w-100"
+          [disabled]="!registerForm.valid"
+        >
+          Register
+        </button>
         <div class="text-center mt-3">
           <a style="color: #663a2a" type="button"
             >No account?Click HERE to register</a

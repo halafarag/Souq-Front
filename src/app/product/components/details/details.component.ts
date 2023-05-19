@@ -4,6 +4,7 @@ import { Product } from 'src/app/shared/models/product';
 import Swal from 'sweetalert2';
 import { Cart } from '../../models/cart';
 import { ProductService } from '../../services/product.service';
+import { CartService } from 'src/app/cart/services/cart.service';
 
 @Component({
   selector: 'app-details',
@@ -19,7 +20,8 @@ export class DetailsComponent implements OnInit {
   total: any = 0;
   constructor(
     private prdService: ProductService,
-    private activaRoute: ActivatedRoute
+    private activaRoute: ActivatedRoute,
+    private cartService: CartService
   ) {}
   getProductByID() {
     const PrdID = this.activaRoute.snapshot.paramMap.get('id');
@@ -53,13 +55,7 @@ export class DetailsComponent implements OnInit {
       });
     }
     localStorage.setItem('cart', JSON.stringify(this.cartList));
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Product add to localStorge',
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    this.cartService.setCartCount(this.cartList.length);
   }
 
   addToFav(prd: any) {
@@ -75,6 +71,16 @@ export class DetailsComponent implements OnInit {
       } else {
         this.favList.push({ prd, userId });
         localStorage.setItem('favourite', JSON.stringify(this.favList));
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        Toast.fire({
+          icon: 'success',
+          title: 'This Product Added To Your Favourite Successfully',
+        });
       }
     } else {
       this.addedToFav = true;

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
@@ -7,11 +7,19 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 export class UserService {
+  private httpOptions = {};
   url = `https://souq-back-end.vercel.app/users`;
   // url = `http://localhost:5000/users`;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        accessToken: localStorage.getItem('accessToken') || '',
+      }),
+    };
+  }
   login(user: User): Observable<User> {
-    return this.http.post<User>(`${this.url}/login`, user);
+    return this.http.post<User>(`${this.url}/login`, user, this.httpOptions);
   }
   register(user: User): Observable<User> {
     return this.http.post<User>(`${this.url}/register`, user);

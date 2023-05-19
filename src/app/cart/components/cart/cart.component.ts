@@ -74,7 +74,7 @@ export class CartComponent implements OnInit {
   // payment
   paymentHandler: any = null;
   stripeAPIKey: any =
-    'pk_test_51MbJWIE2Vs0vbq9Wnz83w8O5CBnuTpdmtszrSRupvA9MqcJLJhSnunKNRSjrfHqQTEQqDzaUWB9Y1x4Qa9PjyRWj00InYXIAwF';
+    'pk_test_51MswKCF4JH7vyFXTlnqNutkXQGdIh0Lqi0puBGuiuTuUt9kHcVTYZCjWDBM9rTAvmN13PrK3KufcKh6I3RjUhufG00Nrz997ZL';
   makePayment(cartList: any, total: number) {
     const paymentHandler = (<any>window).StripeCheckout.configure({
       key: this.stripeAPIKey,
@@ -94,8 +94,8 @@ export class CartComponent implements OnInit {
       );
     };
     paymentHandler.open({
-      name: 'Al_Azhar Team',
-      description: 'Graduation project for  Al_Azhar Team',
+      name: 'Souq',
+      description: 'E-commerce Angular & node js',
       amount: total * 40,
     });
   }

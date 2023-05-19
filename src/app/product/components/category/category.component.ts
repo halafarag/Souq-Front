@@ -136,6 +136,16 @@ export class CategoryComponent implements OnInit, OnChanges {
       } else {
         this.favList.push({ prd, userId });
         localStorage.setItem('favourite', JSON.stringify(this.favList));
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        Toast.fire({
+          icon: 'success',
+          title: 'This Product Added To Your Favourite Successfully',
+        });
       }
     } else {
       this.addedToFav = true;
