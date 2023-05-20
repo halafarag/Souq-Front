@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
   templateUrl: './subcategory.component.html',
   styleUrls: ['./subcategory.component.scss'],
 })
-export class SubcategoryComponent implements OnInit, OnChanges {
+export class SubcategoryComponent implements OnInit {
   prdList: Product[] = [];
   catList: Category[] = [];
   cartList: any[] = [];
@@ -29,14 +29,11 @@ export class SubcategoryComponent implements OnInit, OnChanges {
     private router: Router,
     private cartService: CartService
   ) {}
-  ngOnChanges(): void {
+  getAllPrdForSub() {
+    this.isLoading = true;
     this.activeRoute.params.subscribe((val) => {
       this.subID = val['id'];
     });
-  }
-  getAllPrdForSub() {
-    this.isLoading = true;
-
     this.subCatService
       .getAllProdForSubcat(this.subID || '')
       .subscribe((data) => {
@@ -103,6 +100,16 @@ export class SubcategoryComponent implements OnInit, OnChanges {
         } else {
           this.cartList.push({ prd, userId, amount });
           localStorage.setItem('cart', JSON.stringify(this.cartList));
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          Toast.fire({
+            icon: 'success',
+            title: 'This Product Added To Your LocalStorge Successfully',
+          });
         }
       } else {
         this.cartList.push({ prd, userId, amount });

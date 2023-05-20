@@ -12,10 +12,7 @@ import { ProductModule } from '../product/product.module';
 import { LogoutComponent } from './components/logout/logout.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { FormsModule } from '@angular/forms';
-<<<<<<< HEAD
-=======
 import { AdsComponent } from './components/ads/ads.component';
->>>>>>> a7ea73978a48cb5fd581f53c551e6f15fce44e0b
 
 @NgModule({
   declarations: [

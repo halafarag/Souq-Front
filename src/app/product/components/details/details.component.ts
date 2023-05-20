@@ -43,6 +43,16 @@ export class DetailsComponent implements OnInit {
         } else {
           this.cartList.push({ prd, userId, amount });
           localStorage.setItem('cart', JSON.stringify(this.cartList));
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          Toast.fire({
+            icon: 'success',
+            title: 'This Product Added To LocalStorge Successfully',
+          });
         }
       } else {
         this.cartList.push({ prd, userId, amount });
