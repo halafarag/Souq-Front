@@ -104,6 +104,18 @@ export class AllProductComponent implements OnInit {
     } else {
       this.addedToFav = true;
       this.favList.push({ prd, userId });
+
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      Toast.fire({
+        icon: 'success',
+        title: 'This Product Added To Your Favourite Successfully',
+      });
       localStorage.setItem('favourite', JSON.stringify(this.favList));
     }
   }

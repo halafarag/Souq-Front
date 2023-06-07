@@ -22,6 +22,7 @@ export class SubcategoryComponent implements OnInit {
   addedToFav: boolean = false;
   searchText: string = '';
   subID!: string;
+  id!: string;
   constructor(
     private subCatService: SubcategoryService,
     private catService: CategoryService,
@@ -31,16 +32,11 @@ export class SubcategoryComponent implements OnInit {
   ) {}
   getAllPrdForSub() {
     this.isLoading = true;
-    this.activeRoute.params.subscribe((val) => {
-      this.subID = val['id'];
+    this.subCatService.getAllProdForSubcat(this.id || '').subscribe((data) => {
+      this.prdList = data;
+      this.isLoading = false;
+      console.log(data);
     });
-    this.subCatService
-      .getAllProdForSubcat(this.subID || '')
-      .subscribe((data) => {
-        this.prdList = data;
-        this.isLoading = false;
-        console.log(data);
-      });
   }
   prdDetails(prdId: string) {
     this.router.navigate([`details/${prdId}`]);
@@ -155,7 +151,12 @@ export class SubcategoryComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.getAllPrdForSub();
-    this.getAllCategory();
+    this.activeRoute.params.subscribe({
+      next: (val) => {
+        this.id = val['id'];
+        this.getAllPrdForSub();
+        this.getAllCategory();
+      },
+    });
   }
 }

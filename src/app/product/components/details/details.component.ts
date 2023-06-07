@@ -98,7 +98,6 @@ export class DetailsComponent implements OnInit {
       localStorage.setItem('favourite', JSON.stringify(this.favList));
     }
   }
-
   ngOnInit(): void {
     this.getProductByID();
   }
